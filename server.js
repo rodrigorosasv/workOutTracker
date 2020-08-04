@@ -11,11 +11,13 @@ app.use(express.json());
 
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+mongoose.connect(MONGODB_URI);
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
-  useNewUrlParser: true,
-  useFindAndModify: false
-});
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
+//   useNewUrlParser: true,
+//   useFindAndModify: false
+// });
 
 app.listen(PORT, function() {
   console.log(`Now listening on port: ${PORT}`);
